@@ -1,21 +1,23 @@
 # Publicación y mantenimiento
 
-## Abrir sin instalar
-
-Abre `index.html` directamente. Para probar previews y iframes con un servidor local:
+## Antes de publicar
 
 ```bash
-python3 -m http.server 4173
+npm install
+npm run test
+npm run build
 ```
 
-## Hosting estático
+Publica `dist/` completo y verifica:
 
-Publica `index.html`, `styles.css`, `script.js`, `favicon.svg`, `robots.txt`, `sitemap.xml`, `llms.txt` y las carpetas `assets/` y `docs/`. Mantén las rutas relativas.
+- `dist/index.html` carga en escritorio, tablet y móvil.
+- `dist/assets/technology/` contiene los logos SVG locales.
+- `dist/assets/robot-rest.webp` y `dist/assets/robot-greeting.webp` cargan correctamente.
+- El selector usa banderas y cambia todo el contenido entre español e inglés.
+- El refresh vuelve al Home.
+- `robots.txt`, `sitemap.xml`, `llms.txt` y el favicon responden desde la raíz.
+- La burbuja de soporte abre las opciones de WhatsApp y correo, y los enlaces de proyectos abren sus destinos.
 
-## Logos de tecnologías
+## Mantenimiento
 
-Los logos usan SVG oficiales de Devicon a través de jsDelivr. Si necesitas un paquete totalmente offline, descarga las rutas indicadas en `index.html` dentro de `assets/technology/` y cambia cada `src` a su archivo local.
-
-## Reseñas
-
-Las reseñas nuevas se guardan en `localStorage` del navegador. Para hacerlas compartidas entre visitantes, conecta el formulario a una API y a `docs/database.sql`.
+Las reseñas nuevas se guardan en `localStorage`. Para hacerlas compartidas entre visitantes, conecta el formulario a una API y a `docs/database.sql`. Reemplaza los correos de ejemplo únicamente por testimonios autorizados.

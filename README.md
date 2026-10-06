@@ -1,56 +1,44 @@
 # Digital Flow Perú
 
-Sitio web responsive para una empresa de tecnología, con contenido en español e inglés, reseñas, carruseles, robot animado, efectos de luz y tarjetas de tecnologías.
+Sitio responsive de Digital Flow Perú: software a medida, automatizaciones, inteligencia artificial, cloud computing y soporte para empresas de Perú, Sudamérica y clientes internacionales.
 
-## Abrir sin instalar nada
+## Ejecutar y publicar
 
-1. Descarga y descomprime el proyecto.
-2. Abre `index.html` en el navegador.
-3. Para una prueba local más estable con iframes, ejecuta:
+Requisitos: Node.js 22.12 o superior.
 
 ```bash
-python3 -m http.server 4173
+npm install
+npm run dev
+npm run build
+npm run preview
 ```
 
-Luego abre `http://localhost:4173`.
+El resultado publicable queda en `dist/`. Para abrirlo sin instalar nada, abre `dist/index.html` o sirve esa carpeta con:
+
+```bash
+python3 -m http.server 4173 --directory dist
+```
+
+La web publicada ya está configurada como sitio estático y mantiene el regreso al Home al recargar la página.
 
 ## Estructura
 
-- `index.html`: estructura y contenido.
-- `styles.css`: responsive, colores, efectos y animaciones.
-- `script.js`: menú, robot, carrusel, reseñas, selector por banderas español/inglés y modales de servicios.
-- `assets/`: imágenes del robot y recursos visuales.
-- `dist/`: copia lista para publicación estática.
-- `docs/database.sql`: esquema MySQL para convertir reseñas y contactos en datos compartidos.
-- `docs/ASTRO-REACT.md`: ruta recomendada para migrar a Astro con componentes React.
-- `docs/SEO-GEO-ADS.md`: SEO técnico, GEO/local y pasos para conectar Google Ads.
-- `docs/DEPLOY-CHECKLIST.md`: publicación, logos y mantenimiento.
+- `src/pages/index.astro`: página principal y contenido.
+- `public/styles.css`: estilos responsive, tema berenjena, animaciones y accesibilidad.
+- `public/script.js`: navegación, idioma por banderas, robot, carruseles, reseñas y modales.
+- `public/assets/technology/`: logos SVG locales de tecnologías.
+- `public/assets/robot-rest.webp` y `robot-greeting.webp`: robot optimizado para web.
+- `astro.config.mjs`: configuración de Astro para salida estática.
+- `scripts/finalize.mjs`: copia SEO, documentación y archivos públicos al build.
+- `docs/`: despliegue, SEO/GEO/Ads, base de datos y mantenimiento.
+- `tests/`: verificaciones automáticas de rutas, SEO, assets y comportamiento de carga.
 
 ## Reseñas
 
-Las nuevas reseñas se guardan en `localStorage` con la clave `digitalFlowReviews`, por lo que permanecen disponibles en el mismo navegador. Para compartirlas entre todos los visitantes se debe conectar el formulario a una API y a la base MySQL descrita en `docs/database.sql`.
+Las reseñas nuevas se guardan en `localStorage` con la clave `digitalFlowReviews`, por lo que permanecen disponibles en el mismo navegador. Para compartirlas entre visitantes se debe conectar el formulario a una API y a la base MySQL descrita en `docs/database.sql`.
 
-## Tecnologías y animaciones
-
-La entrega publicada conserva la apertura directa sin instalación: usa HTML, CSS y JavaScript del navegador. Incluye animaciones de entrada por desplazamiento, halo morado, anillos, destellos, brillo de tarjetas, movimiento suave del robot, carrusel de reseñas y cambio completo de idioma.
-
-## Publicar en un hosting estático
-
-Sube al directorio público estos elementos manteniendo la misma estructura:
-
-```text
-index.html
-styles.css
-script.js
-assets/
-```
-
-En cPanel o FTP, coloca `index.html` en `public_html/`. En Netlify, Cloudflare Pages o GitHub Pages, usa la carpeta raíz del proyecto como directorio publicado. No cambies los nombres de los archivos ni la carpeta `assets`.
-
-El selector de idioma muestra banderas vectoriales de España y Reino Unido; el idioma accesible se conserva en `aria-label` y `title`.
-
-Los logotipos de tecnologías se cargan como SVG oficiales de Devicon mediante jsDelivr. Si quieres que el proyecto funcione sin conexión, descarga esos SVG en `assets/technology/` y cambia cada atributo `src` de `index.html` a la ruta local correspondiente.
+El correo de contacto comercial es `digitalflowperu@gmail.com`.
 
 ## SEO, GEO y Ads
 
-La raíz incluye `robots.txt`, `sitemap.xml` y `llms.txt`. Los metadatos, canonical, Open Graph, datos estructurados y señales geográficas están en `index.html`. La integración de Ads queda preparada con eventos `generate_lead`; para activarla necesitas el ID real de Google Ads/Tag Manager. Consulta `docs/SEO-GEO-ADS.md`.
+La salida incluye `robots.txt`, `sitemap.xml`, `llms.txt`, canonical, Open Graph, datos estructurados de Organization, área atendida en Perú, Sudamérica e internacional, y eventos `generate_lead` listos para Google Tag Manager. No se añadió un ID falso de Ads: la conexión requiere el ID real de la cuenta. Consulta `docs/SEO-GEO-ADS.md`.

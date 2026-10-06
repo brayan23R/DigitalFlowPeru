@@ -1,26 +1,21 @@
-# Ruta Astro + React
+# Arquitectura Astro
 
-La versión publicada está preparada para abrirse directamente desde `index.html`, porque ese era el requisito de uso sin instalación. Para convertirla en un proyecto Astro con componentes React:
+La entrega usa Astro 7 con salida estática. Astro genera HTML rápido y conserva las interacciones en JavaScript del navegador, por lo que el sitio sigue siendo fácil de publicar en cualquier hosting estático.
+
+## Flujo local
 
 ```bash
-npm create astro@latest digital-flow-astro
-cd digital-flow-astro
-npx astro add react
 npm install
 npm run dev
+npm run build
+npm run preview
 ```
 
-Después:
+La página vive en `src/pages/index.astro`. Los archivos públicos están en `public/` y el build queda en `dist/`.
 
-1. Mueve las secciones de `index.html` a componentes `.astro`.
-2. Convierte el carrusel de reseñas y el selector de idioma en componentes React con estado.
-3. Conserva `styles.css` y `assets/` dentro de `src/` o `public/`.
-4. Usa las animaciones nativas de Astro View Transitions para navegar entre páginas.
-5. Conecta el formulario a una API que use `docs/database.sql`.
+No se añadió React porque esta página no necesita un runtime React completo: el robot, carruseles, idioma, modales y reseñas funcionan como interacciones ligeras del navegador. Si más adelante se necesita un panel complejo, Astro permite añadir componentes React aislados con `@astrojs/react` sin convertir toda la página.
 
-Referencias oficiales:
+Referencias:
 
-- Astro: https://docs.astro.build/en/install-and-setup/
-- Astro View Transitions: https://docs.astro.build/en/guides/view-transitions/
-- Integración de frameworks en Astro: https://docs.astro.build/en/guides/framework-components/
-- React: https://react.dev/learn/installation
+- https://docs.astro.build/en/install-and-setup/
+- https://docs.astro.build/en/guides/framework-components/
