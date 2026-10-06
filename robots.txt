@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://novaai-software-intelligence.arturo-quispe12as.chatgpt.site/sitemap.xml
